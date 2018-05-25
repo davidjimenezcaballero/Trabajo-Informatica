@@ -19,4 +19,5 @@ public:		//métodos
 	Vector2D operator*(float);			//Producto de un vector por un escalar
 	//Vector2D operator+(Vector2D op);
 	Vector2D operator+(float real);
+
 };

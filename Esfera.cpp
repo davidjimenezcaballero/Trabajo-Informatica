@@ -4,9 +4,8 @@
 
 Esfera::Esfera()
 {
-	rojo = verde = azul = 255;
+	color.rojo = color.verde = color.azul = 255;
 	radio = 1.0f;
-	aceleracion.y = 0.0;
 	setPos(9, 3);
 	setVel(0, 0);
 }
@@ -17,7 +16,6 @@ Esfera::Esfera(float rad, float x, float y, float vx, float vy)
 	setPos(x, y);
 	setVel(vx, vy);
 	setColor(255, 255, 100);
-	aceleracion.y = 0.0f;
 }
 
 Esfera::~Esfera()
@@ -26,17 +24,10 @@ Esfera::~Esfera()
 
 void Esfera::Dibuja()
 {
-	glColor3ub(rojo, verde, azul);
+	glColor3ub(color.rojo, color.verde, color.azul);
 	glTranslatef(posicion.x, posicion.y, 5.0f);
 	glutSolidSphere(radio, 20, 20);
 	glTranslatef(-posicion.x, -posicion.y, -5.0f);
-}
-
-void Esfera::setColor(unsigned char cr, unsigned char cv, unsigned char cz)
-{
-	rojo = cr;
-	azul = cz;
-	verde = cv;
 }
 
 void Esfera::setRadio(float r)
@@ -45,9 +36,3 @@ void Esfera::setRadio(float r)
 		r = 0.1F;
 	radio = r;
 }
-
-void Esfera::Mueve(float t)
-{
-		posicion = posicion + velocidad * t;
-}
-

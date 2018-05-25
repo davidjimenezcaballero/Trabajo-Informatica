@@ -1,25 +1,20 @@
 #pragma once
-
-#pragma once
 #include "Vector2D.h"
+#include "ObjetoMovil.h"
 #include "ColorRGB.h"
-class Cubo
+
+class Cubo : public  ObjetoMovil
 {
-	friend class Interaccion;
-public:
-
-	void mueve(float t);
-	void dibuja();
-
-	void setColor(Byte r, Byte v, Byte a);
-	void setLado(float l);
-	void setPos(float ix, float iy);
-	void setVel(float vx, float vy);
-	Cubo();
-	~Cubo();
 private:
-	ColorRGB color;
 	float lado;// lado en el constructor de 10
-	Vector2D posicion;
-	Vector2D velocidad;
+public:
+	Cubo();												//Constructor 1
+	Cubo(float lado, float px = 0.0f, float py = 0.0f,	// Constructor 2 
+		Byte r = 0, Byte g = 0, Byte b = 255);
+	~Cubo();											// Destructor
+
+	void dibuja();
+	void setLado(float l);
+
+	friend class Interaccion;
 };

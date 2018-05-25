@@ -11,7 +11,7 @@ void Interaccion::rebote(Hombre &h, Caja c)
 bool Interaccion::rebote(Bonus & b, Caja c)
 {
 	Vector2D dir;
-	float dif = c.frontal.distancia(b.posicion, &dir) -b.lado;
+	float dif = c.frontal.distancia(b.posicion, &dir) - b.lado;
 	if (dif < 0.0f) {
 		Vector2D v_inicial = b.velocidad;
 		b.velocidad = v_inicial - dir * 2.0*(v_inicial*dir);
@@ -184,6 +184,16 @@ void Interaccion::choque(Cubo & b, Caja c)
 	if (b.posicion.y >= ymax)b.posicion.y = ymax;
 }
 
+void Interaccion::choque(Esfera & e, Cubo c)
+{
+	Vector2D dist;
+	dist = e.posicion - c.posicion;
+	float distancia = dist.modulo();
+	if (distancia < 10.0f) {
+		e.setVel(0.0f, 0.0f);
+	}
+}
+
 bool Interaccion::movimiento_vertical(Esfera & e, Tablero t)
 {
 	// Permite el movimiento vertical si se encuentra en una de las casillas
@@ -206,5 +216,15 @@ bool Interaccion::movimiento_horizontal(Esfera & e, Tablero t)
 		}
 	}
 	return false;
-	
+}
+
+void Interaccion::desplazamiento(Cubo & c, Tablero t, float vx, float vy)
+{
+	Vector2D aux;
+	if (c.comprobarPos(t)) {
+		aux = c.posicion;
+		c.setVel(vx, vy);
+	}
+	if (((c.posicion.x == aux.x) && (c.posicion.y == aux.y + 10.0f)) || ((c.posicion.x == aux.x) && (c.posicion.y == aux.y - 10.0f)) || ((c.posicion.x == aux.x + 10.0f) && (c.posicion.y == aux.y)) || ((c.posicion.x == aux.x - 10.0f) && (c.posicion.y == aux.y)))
+		c.setVel(0.0f, 0.0f);
 }

@@ -17,13 +17,18 @@ public:
 	static void choque(Esfera &e, Caja c);
 	static void choque(Cubo & b, Caja c);
 
+	// ¿Qué pasa cuando hay choque entre objetos moviles ?
+	static void choque(Esfera &e, Cubo c);
+
 	// Limitar el movimiento a las posiciones de las casillas del tablero
 	static bool movimiento_vertical(Esfera &e, Tablero t);
 	static bool movimiento_horizontal(Esfera & e, Tablero t);
-	
+
+	// Desplazamiento
+	static void desplazamiento(Cubo & c, Tablero t, float vx, float vy);
 
 
-
+	// Paso por referencia para poder modificar las variables
 	static bool rebote(Esfera &e, Pared p);
 	static void rebote(Esfera &e, Caja c);
 	static void rebote(Hombre &h, Caja c);

@@ -5,9 +5,8 @@ class ColorRGB
 {
 public:
 	ColorRGB(Byte _r = 255, Byte _v = 255, Byte _a = 255);
-	void set(Byte _r = 255, Byte _v = 255, Byte _a = 255) { r = _r; g = _v; b = _a; }
+	void set(Byte _r = 255, Byte _v = 255, Byte _a = 255) { rojo = _r; verde = _v; azul = _a; }
 	void ponColor();
 	virtual ~ColorRGB();
-	Byte r, g, b;
-
+	Byte rojo, verde, azul;
 };

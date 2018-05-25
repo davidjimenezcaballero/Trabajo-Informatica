@@ -8,11 +8,6 @@ Casilla::Casilla(float x, float y)
 	posicion.y = y;
 }
 
-/*Casilla::Casilla(int t)
-{
-	tipo = t;
-}*/
-
 Casilla::~Casilla()
 {
 }
@@ -36,7 +31,7 @@ void Casilla::setTipo(int tp)
 void Casilla::dibuja()
 {
 	switch (tipo) {
-	case 0:		// Tipo 0 es la casilla normal
+	case 0:
 		glDisable(GL_LIGHTING);
 		color.ponColor();
 		glBegin(GL_POLYGON);
@@ -47,8 +42,7 @@ void Casilla::dibuja()
 		glEnd();
 		glEnable(GL_LIGHTING);
 		break;
-
-	case 1:		// Casilla de espera , cruz verde
+	case 1:
 		/*glDisable(GL_LIGHTING);
 		color.ponColor();
 		glBegin(GL_POLYGON);
@@ -82,7 +76,7 @@ void Casilla::dibuja()
 		glEnable(GL_LIGHTING);
 		break;
 
-	case 2:		// Casilla de validación, casilla verde
+	case 2:
 		glDisable(GL_LIGHTING);
 		setColor(0, 255, 0);
 		color.ponColor();
@@ -94,8 +88,8 @@ void Casilla::dibuja()
 		glEnd();
 		glEnable(GL_LIGHTING);
 		break;
-
-	case 3:		// Casilla de eliminación, cruz roja
+	case 3:
+		//La cruz verde parte 1
 		glDisable(GL_LIGHTING);
 		setColor(255, 0, 0);
 		color.ponColor();

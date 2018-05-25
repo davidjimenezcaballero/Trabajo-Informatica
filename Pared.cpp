@@ -25,15 +25,15 @@ void Pared::setLimites(float x1, float y1, float x2, float y2)
 	limite2.y = y2;
 }
 
-void Pared::Dibuja()		// Función para dibujar las paredes
+void Pared::dibuja()		// Función para dibujar las paredes
 {
 	glDisable(GL_LIGHTING);
 	glColor3ub(rojo, verde, azul);
 	glBegin(GL_POLYGON);
-	glVertex3d(limite1.x, limite1.y, 5);
-	glVertex3d(limite2.x, limite2.y, 5);
-	glVertex3d(limite2.x, limite2.y, 0);
-	glVertex3d(limite1.x, limite1.y, 0);
+	glVertex3d(limite1.x, limite1.y, 10);
+	glVertex3d(limite2.x, limite2.y, 10);
+	glVertex3d(limite2.x, limite2.y, -10);
+	glVertex3d(limite1.x, limite1.y, -10);
 	glEnd();
 	glEnable(GL_LIGHTING);
 }

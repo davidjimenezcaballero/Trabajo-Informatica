@@ -1,6 +1,7 @@
 #include "Tablero.h"
 
-Tablero::Tablero(int t) {
+Tablero::Tablero(int t)
+{
 	tipo = t;
 }
 

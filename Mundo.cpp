@@ -3,10 +3,9 @@
 #include "Interaccion.h"
 #include <cmath>
 
-Mundo::~Mundo()
+Mundo::~Mundo()			// Destructor
 {
-	//esferas.destruirContenido();
-	//disparos.destruirContenido();
+
 }
 
 void Mundo::RotarOjo()
@@ -18,38 +17,11 @@ void Mundo::RotarOjo()
 	z_ojo = dist * sin(ang);
 }
 
-void Mundo::Dibuja()
+void Mundo::setVista(float x, float y, float z)
 {
-	// Determinamos la vista
-	gluLookAt(x_ojo, y_ojo, z_ojo,
-				0.0, -15.0, 0.0, 
-				0.0, 0.0f, 1.0f);
-	
-	tablero.dibuja();	// Dibujamos el tablero
-
-	casilla1.dibuja();	// Esfera de 
-	casilla2.dibuja();
-	casilla3.dibuja();
-
-	
-
-	bonus.dibuja();
-
-	cubo.dibuja();
-
-	esfera.Dibuja();
-
-	caja.Dibuja();
-}
-
-void Mundo::Mueve()
-{
-	//bonus.mueve(0.5);
-	cubo.mueve(0.25);
-	esfera.Mueve(0.25);
-	Interaccion::choque(esfera, caja);
-	Interaccion::movimiento_vertical(esfera, tablero);
-	Interaccion::choque(cubo, caja);
+	x_ojo = x;
+	y_ojo = y;
+	z_ojo = z;
 }
 
 void Mundo::Inicializa()
@@ -67,10 +39,11 @@ void Mundo::Inicializa()
 	casilla3.setPos(5, 15);			// Casilla de eliminación
 	casilla3.setTipo(3);
 
-	tablero.setTamanio(10,10);		// Creamos un tablero 10x10
+	tablero.setTamanio(10, 10);		// Creamos un tablero 10x10
 
 	bonus.setPos(5.0, -45.0f);		// Creamos un bonus
-	cubo.setPos(5.0, -25.0);		// Creamos un cubo
+	cubo.setPos(15.0, -45.0);		// Creamos un cubo
+	cubo.setColor(0, 0, 255);
 	cubo.setLado(10.0f);
 
 	esfera.setRadio(5.0f);
@@ -78,11 +51,38 @@ void Mundo::Inicializa()
 	esfera.setColor(0, 255, 0);
 }
 
-void Mundo::setVista(float x, float y, float z)
+void Mundo::Dibuja()
 {
-	x_ojo = x;
-	y_ojo = y;
-	z_ojo = z;
+	// Determinamos la vista
+	gluLookAt(x_ojo, y_ojo, z_ojo,
+		0.0, -15.0, 0.0,
+		0.0, 0.0f, 1.0f);
+
+
+	caja.Dibuja();
+
+	casilla1.dibuja();	// Esfera de 
+	casilla2.dibuja();
+	casilla3.dibuja();
+
+	tablero.dibuja();	// Dibujamos el tablero
+
+						//bonus.dibuja();
+
+	cubo.dibuja();
+
+	esfera.Dibuja();
+}
+
+void Mundo::Mueve()
+{
+	//bonus.mueve(0.5);
+	cubo.mueve(0.25);
+	esfera.mueve(0.25);
+	Interaccion::choque(esfera, caja);
+	Interaccion::movimiento_vertical(esfera, tablero);
+	Interaccion::choque(cubo, caja);
+	Interaccion::choque(esfera, cubo);	
 }
 
 void Mundo::Tecla(unsigned char key)
@@ -108,22 +108,25 @@ void Mundo::teclaEspecial(unsigned char key)
 {
 	switch (key) {
 	case GLUT_KEY_LEFT:
+		Interaccion::desplazamiento(cubo, tablero, -5.0f, 0.0f);
 		if (Interaccion::movimiento_horizontal(esfera, tablero))
-		esfera.setVel(-5.0f, 0.0f);
+			esfera.setVel(-5.0f, 0.0f);
 		break;
 	case GLUT_KEY_RIGHT:
+		Interaccion::desplazamiento(cubo, tablero, 5.0f, 0.0f);
 		if (Interaccion::movimiento_horizontal(esfera, tablero))
-		esfera.setVel(5.0f, 0.0f);
+			esfera.setVel(5.0f, 0.0f);
 		break;
 	case GLUT_KEY_UP:
+		Interaccion::desplazamiento(cubo, tablero, 0.0f, 5.0f);
 		if (Interaccion::movimiento_vertical(esfera, tablero))
 			esfera.setVel(0.0f, 5.0f);
 		break;
 	case GLUT_KEY_DOWN:
+		Interaccion::desplazamiento(cubo, tablero, 0.0, -5.0f);
 		if (Interaccion::movimiento_vertical(esfera, tablero))
 			esfera.setVel(0.0f, -5.0f);
 		break;
-
 	}
 }
 

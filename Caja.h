@@ -3,10 +3,10 @@
 
 class Caja{
 private:
-	Pared frontal;
-	Pared trasera;
-	Pared pared_izq;
-	Pared pared_dcha;
+	Pared frontal;		// Pared frontal
+	Pared trasera;		// Pared trasera
+	Pared pared_izq;	// Pared izquierda
+	Pared pared_dcha;	// Pared derecha
 public:
 	Caja();				// Constructor
 	virtual ~Caja();	// Destructor
