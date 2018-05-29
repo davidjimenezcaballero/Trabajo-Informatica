@@ -1,7 +1,7 @@
 #pragma once
 #include "Vector2D.h"
 #include "ObjetoMovil.h"
-
+#include <cstring>
 class Esfera : public ObjetoMovil {
 
 protected:
@@ -15,7 +15,7 @@ public:
 		float vx = 0.0f, float vy = 0.0f);				// Constructor 2
 	virtual ~Esfera();									// Destructor 		
 
-														//Métodos 
+														//MÃ©todos 
 	void Dibuja();
 	void setRadio(float r);
 
